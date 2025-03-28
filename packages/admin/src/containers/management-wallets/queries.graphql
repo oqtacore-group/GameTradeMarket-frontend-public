@@ -1,0 +1,25 @@
+query Wallets(
+  $offset: Int
+  $first: Int
+) {
+  wallets(
+    params: {
+      offset: $offset,
+      first: $first,
+    }
+  ) {
+    user_id
+    address
+    user {
+      email
+    }
+    name
+    create_time
+  }
+}
+
+query WalletsCount {
+  walletsCount {
+    total
+  }
+}

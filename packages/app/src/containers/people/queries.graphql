@@ -1,0 +1,65 @@
+query People(
+  $first: Int
+  $offset: Int
+  $nick_name: String
+  $hide_me: Boolean
+) {
+  users(
+    params: {
+      first: $first,
+      offset: $offset,
+      nick_name: $nick_name,
+      hide_me: $hide_me,
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        id
+        custom_url
+        nick_name
+        image_url
+        last_visited
+        items_count
+        is_friendship_requested
+        is_friend
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
+
+mutation SendFriendRequest(
+  $recipient: ID!
+) {
+  sendFriendRequest(
+    recipient: $recipient
+  ) {
+    message
+    code
+  }
+}
+
+query IsFriendRequestSentToMe(
+  $friend: ID!
+) {
+  isFriendRequestSentToMe(
+    friend: $friend,
+  ) {
+    friend
+    isFriendRequestSentToMe
+  }
+}
+
+mutation ApproveFriendRequest(
+  $friend: ID!
+) {
+  approveFriendRequest(
+    friend: $friend
+  ) {
+    message
+    code
+  }
+}

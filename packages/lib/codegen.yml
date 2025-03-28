@@ -1,0 +1,23 @@
+generates:
+  ./packages/lib/src/codegen-types.tsx:
+    schema: ${NEXT_PUBLIC_GQ_SCHEMA_URL}
+    documents:
+      - './packages/**/queries.graphql'
+    overwrite: true
+    plugins:
+      - add:
+          content: '// THIS FILE IS GENERATED, DO NOT EDIT!'
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - fragment-matcher
+    config:
+      maybeValue: T | null | undefined
+      reactApolloVersion: 3
+      gqlImport: '@apollo/client#gql'
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      scalars:
+        LocalDateTime: string
+        UUID: string

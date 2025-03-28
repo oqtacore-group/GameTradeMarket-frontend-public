@@ -1,0 +1,121 @@
+query MyFriends(
+  # $first: Int
+  # $offset: Int
+  $id: ID!
+  $customUrl: String!
+) {
+  user(id: $id, custom_url: $customUrl) {
+    image_url
+    nick_name
+    friends {
+      edges {
+        node {
+          id
+          image_url
+          nick_name
+          email
+          version
+          unreadCount
+          last_message
+          custom_url
+          last_visited
+          bonuses
+          unreadCount
+          version
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+      totalCount
+    }
+  }
+}
+
+query IncomingRequests {
+  incomingRequests {
+    edges {
+      node {
+        id
+        image_url
+        nick_name
+        email
+        version
+        unreadCount
+        last_message
+        custom_url
+        last_visited
+      }
+    }
+    # pageInfo {
+    #   hasNextPage
+    # }
+    # totalCount
+  }
+}
+
+query OutgoingRequests {
+  outgoingRequests {
+    edges {
+      node {
+        id
+        image_url
+        nick_name
+        email
+        version
+        unreadCount
+        last_message
+        custom_url
+        last_visited
+      }
+    }
+    # pageInfo {
+    #   hasNextPage
+    # }
+    # totalCount
+  }
+}
+
+mutation ApproveFriendRequest(
+  $friend: ID!
+) {
+  approveFriendRequest(
+    friend: $friend
+  ) {
+    message
+    code
+  }
+}
+
+mutation RejectFriendRequest(
+  $sender: ID!
+) {
+  rejectFriendRequest(
+    sender: $sender
+  ) {
+    message
+    code
+  }
+}
+
+mutation CancelOutgoingFriendRequest(
+  $sender: ID!
+) {
+  cancelOutgoingFriendRequest(
+    sender: $sender
+  ) {
+    message
+    code
+  }
+}
+
+mutation RemoveFromFriends(
+  $friend: ID!
+) {
+  removeFromFriends(
+    friend: $friend
+  ) {
+    message
+    code
+  }
+}

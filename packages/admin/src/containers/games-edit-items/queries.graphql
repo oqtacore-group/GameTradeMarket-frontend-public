@@ -1,0 +1,29 @@
+query ItemsByGameCode(
+  $gameCode: String
+  $offset: Int
+  $first: Int
+) {
+  gameItemsAdmin(
+    params: {
+      gameCode: $gameCode,
+      offset: $offset,
+      first: $first,
+    }
+  ) {
+    id
+    contract
+    description
+  }
+}
+
+query ItemsByGameCodeCount(
+  $gameCode: String
+) {
+  gameItemsCount(
+    params: {
+      gameCode: $gameCode,
+    }
+  ) {
+    total
+  }
+}

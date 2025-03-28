@@ -1,0 +1,36 @@
+mutation UpdateSource(
+  $code: String!
+  $contracts: [ContractCreateInput]
+  $description: String
+  $developer: String
+  $is_free_to_play: Boolean
+  $logo_url: String
+  $media_links: [MediaLinkInput]!
+  $name: String
+  $publisher: String
+  $release_date: String
+  $social_links: [SocialLinkInput]!
+  $state: SourceStateType
+  $app_links: [AppLinkInput]!
+) {
+  updateSource(
+    params: {
+      code: $code,
+      contracts: $contracts,
+      description: $description,
+      developer: $developer,
+      is_free_to_play: $is_free_to_play,
+      logo_url: $logo_url,
+      media_links: $media_links,
+      name: $name,
+      publisher: $publisher,
+      release_date: $release_date,
+      social_links: $social_links,
+      state: $state,
+      app_links: $app_links,
+    }
+  ) {
+    code
+    message
+  }
+}

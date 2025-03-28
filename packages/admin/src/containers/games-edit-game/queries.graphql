@@ -1,0 +1,67 @@
+#
+# Publisher users
+#
+
+query PublisherUsers(
+  $code: String!
+) {
+  publisherUsers(
+    params: {
+      code: $code,
+    }
+  ) {
+    email
+    user_id
+  }
+}
+
+mutation AddPublisherUser(
+  $code: String!
+  $user_email: String!
+) {
+  addPublisherSource(
+    params: {
+      code: $code,
+      user_email: $user_email
+    }
+  ) {
+    code
+    message
+  }
+}
+
+mutation RemovePublisherUser(
+  $code: String!
+  $user_id: ID!
+) {
+  removePublisherSource(
+    params: {
+      code: $code,
+      user_id: $user_id
+    }
+  ) {
+    code
+    message
+  }
+}
+
+
+#
+# Game's smart contracts
+#
+
+query GetContracts(
+  $code: String!
+) {
+  getContracts(
+    params: {
+      code: $code,
+    }
+  ) {
+    blockchain
+    contract
+    game_code
+    is_test
+    mapping
+  }
+}

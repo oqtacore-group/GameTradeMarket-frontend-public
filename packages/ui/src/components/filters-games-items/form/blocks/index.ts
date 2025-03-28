@@ -1,0 +1,1 @@
+export { GenresFilterBlock } from './genres';

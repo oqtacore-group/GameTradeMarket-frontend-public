@@ -1,0 +1,103 @@
+query UserAccountInfo {
+    me {
+        id
+        nick_name
+        custom_url
+        image_url
+        custom_url
+        bio
+        locale
+        player_token
+        wallets {
+            name
+            address
+            balances {
+              value
+              currency
+              blockchain
+              decimals
+            }
+        }
+        social {
+            kind
+            value
+        }
+    }
+}
+
+mutation user(
+    $nick_name: String
+    $custom_url: String
+    $bio: String
+    $image_url: String
+    $social: [SocialParams]
+    $locale: String
+) {
+    user(
+        params: {
+            nick_name: $nick_name
+            custom_url: $custom_url
+            bio: $bio
+            image_url: $image_url
+            social: $social
+            locale: $locale
+        }
+    ) {
+        id
+        bio
+        social {
+            kind
+            value
+        }
+        roles {
+            code
+        }
+        image_url
+        email
+        custom_url
+    }
+}
+
+
+query MyWallets {
+    myWallets {
+        name
+        address
+        balances {
+          value
+          currency
+          blockchain
+          decimals
+        }
+    }
+}
+
+
+mutation ConnectWallet($name: String!, $address: String!, $provider: WalletProvider!) {
+    connectWallet(params: { name: $name, address: $address, provider: $provider }) {
+        code
+        message
+    }
+}
+
+mutation DisconnectWallet($address: String!) {
+    disconnectWallet(address: $address) {
+        code
+        message
+    }
+}
+
+mutation Wallet($params: WalletUpdateParams) {
+    wallet(params: $params) {
+        name
+        address
+        balances {
+          contract
+          name
+          currency
+          value
+          blockchain
+          decimals
+        }
+    }
+}

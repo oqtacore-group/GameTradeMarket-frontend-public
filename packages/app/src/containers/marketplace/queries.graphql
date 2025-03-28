@@ -1,0 +1,143 @@
+query GetSSRGameTokenCards(
+  $first: Int
+  $gameCode: String
+) {
+  gameTokenCards(
+    params: {
+      first: $first,
+      gameCode: $gameCode,
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        blockchain
+        name
+        id
+        token_value
+        likes_count
+        is_my_like
+        contract
+        currencies {
+          coin_name
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
+
+query GetGameTokenCards(
+  $first: Int
+  $offset: Int
+  $gameCode: String
+  $id: String
+  $name: String
+  $facets: [GameCardsFacetsParam]
+  $sort: GameCardSort
+  $price: GameCardPriceFilter
+  $contract: String
+  $tokenValue: String
+  $saleTypes: [SaleType]
+  $blockchains: [String]
+  $coinAddress: [String!]
+  $blockchain: [String!]
+  # $userId: ID
+) {
+  gameTokenCards(
+    params: {
+      first: $first,
+      offset: $offset,
+      gameCode: $gameCode,
+      facets: $facets,
+      sort: $sort,
+      price: $price,
+      id: $id,
+      name: $name,
+      contract: $contract,
+      tokenValue: $tokenValue,
+      saleTypes: $saleTypes,
+      blockchains: $blockchains
+      coinAddress: $coinAddress
+      blockchain: $blockchain
+      # user_id: $userId,
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        picture
+        price
+        name
+        id
+        coin_info {
+          blockchain
+          coin_address
+          decimals
+          logo
+          price
+          symbol
+          usd_price
+        }
+        token_value
+        blockchain
+        likes_count
+        is_my_like
+        contract
+        currencies {
+          blockchain_code
+          coin_name
+          contract_address
+          decimals
+          id
+          logo
+          price
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
+
+query GameTokenFilters (
+  $gameCode: String
+){
+  gameTokenFilters( params: { gameCode: $gameCode }) {
+    key
+    title
+    type
+    items {
+      code
+      title
+      checked
+      disable
+      coins {
+        code
+        title
+        coin_address
+        blockchain
+        checked
+        disable
+      }
+    }
+  }
+}
+
+query GameTokenFacets (
+  $gameCode: String!
+){
+  gameTokenFacets( params: { gameCode: $gameCode }) {
+    key
+    type
+    values {
+      key
+      count
+    }
+    min
+    max
+  }
+}

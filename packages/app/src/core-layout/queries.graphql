@@ -1,0 +1,7 @@
+mutation Subscribe($email: String!, $k8bd2: String!) {
+    subscribe(params: { email: $email, k8bd2: $k8bd2 }) {
+        message
+        code
+    }
+}
+

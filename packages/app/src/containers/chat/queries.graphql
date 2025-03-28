@@ -1,0 +1,32 @@
+#subscription TextSend($recipient: String $context: String ) {
+#  textSend(recipient: $recipient, context: $context) {
+#    id
+#  }
+#}
+
+query UserFriends {
+  me {
+    id
+    image_url
+    friends {
+      edges {
+        node {
+          id
+          image_url
+          nick_name
+          email
+          version
+          unreadCount
+          last_message
+          bonuses
+          unreadCount
+          version
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+      totalCount
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@game-trade/icons",
+  "license": "UNLICENSED",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "svgr-compile": "npx svgr --config-file ./.config__svgr.js --template ./src/icon-template.js --out-dir ./src/build ./src/svg/**/*",
+    "create-icons-index": "node ./src/index-template.js",
+    "build": "rm -rf ./src/build && npm run svgr-compile && npm run create-icons-index"
+  },
+  "main": "src/index.ts",
+  "files": [
+    "src",
+    "tsconfig.json"
+  ],
+  "devDependencies": {
+    "@svgr/cli": "5.5.0",
+    "@svgr/webpack": "5.5.0",
+    "@types/styled-components": "^5.1.18",
+    "@types/styled-system": "^5.1.14",
+    "@types/uuid": "^8.3.4",
+    "styled-components": "5.3.3",
+    "styled-system": "5.1.5",
+    "typescript": "5.1.3",
+    "uuid": "^8.3.2"
+  },
+  "author": "",
+  "description": "",
+  "dependencies": {}
+}

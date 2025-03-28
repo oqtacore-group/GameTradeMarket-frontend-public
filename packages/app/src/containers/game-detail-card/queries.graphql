@@ -1,0 +1,214 @@
+
+query GameCard(
+  $code: String
+) {
+  gameCard(params: { code: $code }) {
+    publisher
+    developer
+    description
+    blockchainNames
+    release_date
+    external_url
+    rating
+    app_links {
+      type
+      link
+    }
+    social_links {
+      type
+      link
+    }
+    genres {
+      code
+      name
+    }
+    media_links {
+      type
+      link
+    }
+    logo
+    admitted_to_trading
+    release_date
+    owners
+    items_on_sale
+    floor_price
+    is_partner
+    is_crypto_required
+    is_free_to_play
+    is_game_required
+    is_nft_required
+    is_play_to_earn_crypto
+    is_play_to_earn_nft
+    count_review
+    currencies {
+      blockchain_code
+      coin_name
+      contract_address
+      decimals
+      id
+      logo
+      price
+    }
+    contracts {
+      title
+      contract_address
+      verify
+      link
+      blockchain
+    }
+  }
+}
+
+query GameCardMint(
+  $code: String!
+) {
+  gameCardMint(params: { code: $code }) {
+    title
+    description
+    utility
+    contract
+    blockchain
+    start_price
+    start_mint
+    amount_items
+    media {
+        type
+        link
+    }
+    roadmap {
+        quarter
+        date
+        list {
+            completed
+            value
+        }
+    }
+  }
+}
+
+query GameCardsMint {
+  gameCardsMint {
+    title
+    description
+    utility
+    contract
+    blockchain
+    start_price
+    media {
+        type
+        link
+    }
+    start_mint
+    amount_items
+    usd_price
+  }
+}
+
+query GetGameStats(
+  $gameCode: String!
+) {
+  gameStats(gameCode: $gameCode) {
+    tx_7d
+    tx_30d
+    uaw_7d
+    uaw_30d
+  }
+}
+
+query GameCardBlog(
+  $code: String
+) {
+  getBlogs(params: { gameCode: $code }) {
+    create_time
+    description
+    game_code
+    id
+    img_url
+    is_published
+    sub_title
+    title
+    user_id
+  }
+}
+
+query GetReviews(
+  $code: String
+) {
+  getReviews(params: { gameCode: $code }) {
+    create_time
+    description
+    game_code
+    id
+    rating
+    user_id
+    author {
+      nick_name
+      image_url
+      review_count
+    }
+  }
+}
+
+mutation CreateReview(
+  $description: String!
+  $game_code: String!
+  $rating: Int!
+  $user_id: String!
+) {
+  createReview(
+    params: {
+      description: $description
+      game_code: $game_code
+      rating: $rating
+      user_id: $user_id
+    }
+  ) {
+    create_time
+    description
+    game_code
+    id
+    rating
+    user_id
+    author {
+      nick_name
+      image_url
+      review_count
+    }
+  }
+}
+
+mutation DeleteReview(
+  $id: Int!
+) {
+  deleteReview(
+    params: {
+      id: $id
+    }
+  )
+}
+
+mutation UpdateReview(
+  $description: String!
+  $rating: Int!
+  $id: Int!
+) {
+  updateReview(
+    params: {
+      description: $description
+      rating: $rating
+      id: $id
+    }
+  ) {
+    create_time
+    description
+    game_code
+    id
+    rating
+    user_id
+    author {
+      nick_name
+      image_url
+      review_count
+    }
+  }
+}

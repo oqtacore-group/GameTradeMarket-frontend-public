@@ -1,0 +1,67 @@
+query Login(
+    $email: String!
+    $password: String!
+    $locale: String
+) {
+    login(
+        params: {
+            email: $email
+            password: $password
+            locale: $locale
+        }
+    ) {
+        token
+        token_type
+    }
+}
+
+mutation Token($token: String!, $referrerLink: String, $invitedBy: String) {
+    token(token: $token, referrerLink: $referrerLink, invitedBy: $invitedBy) {
+        token
+        token_type
+    }
+}
+
+
+query UserInfo {
+  me {
+    id
+    nick_name
+    custom_url
+    email
+    image_url
+    wallets {
+      name
+      address
+      balances {
+        value
+        currency
+        blockchain
+        decimals
+      }
+    }
+  }
+}
+
+
+mutation Reset($email: String!, $code: Int!, $password: String!) {
+    reset(params: { email: $email, code: $code, password: $password }) {
+        message
+    }
+}
+
+
+
+mutation DeleteUser($id: String!) {
+    deleteUser(id: $id) {
+        code
+        message
+    }
+}
+
+query Refresh {
+    refresh {
+        token
+        token_type
+    }
+}

@@ -1,0 +1,29 @@
+query Users(
+  $offset: Int
+  $first: Int
+) {
+  users(
+    params: {
+      offset: $offset,
+      first: $first,
+    }
+  ) {
+    edges {
+      node {
+        id
+        email
+        nick_name
+        last_visited
+        roles {
+          code
+        }
+      }
+    }
+  }
+}
+
+query UsersCount {
+  usersCount {
+    total
+  }
+}

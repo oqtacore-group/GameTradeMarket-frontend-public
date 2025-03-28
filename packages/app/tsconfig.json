@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@root/*": ["*"],
+      "@/": ["src"],
+      "@/*": ["src/*"],
+      "@game-trade/ui/*": ["../ui/src/*"],
+      "@game-trade/ui": ["../ui/src/index"],
+      "@game-trade/lib/*": ["../lib/src/*"],
+      "@game-trade/lib": ["../lib/src/index"],
+      "@game-trade/icons/*": ["../icons/src/*"],
+      "@game-trade/icons": ["../icons/src/index"],
+      "@game-trade/config/*": ["../config/*"],
+    }
+  },
+  "include": [
+    "src",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../types",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

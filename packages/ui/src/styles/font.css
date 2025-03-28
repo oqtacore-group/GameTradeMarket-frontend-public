@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'ChakraPetch';
+    src:
+            url('../../../../node_modules/@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Regular.woff2') format('woff2'),
+            url('../../../../node_modules/@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Regular.woff') format('woff');
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'ChakraPetch';
+    src:
+            url('../../../../node_modules/@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Medium.woff2') format('woff2'),
+            url('../../../../node_modules/@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Medium.woff') format('woff');
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'ChakraPetch';
+    src:
+            url('../../../../node_modules/@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Bold.woff2') format('woff2'),
+            url('../../../../node_modules/@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Bold.woff') format('woff');
+    font-style: normal;
+    font-weight: 900;
+}
+
+
+@font-face {
+    font-family: 'BaiJamjuree';
+    src:
+            url('../../../../node_modules/@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Regular.woff2') format('woff2'),
+            url('../../../../node_modules/@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Regular.woff') format('woff');
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'BaiJamjuree';
+    src:
+            url('../../../../node_modules/@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Bold.woff2') format('woff2'),
+            url('../../../../node_modules/@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Bold.woff') format('woff');
+    font-style: normal;
+    font-weight: 900;
+}
+
+
+@font-face {
+    font-family: 'gtm';
+    src: url('../../../../node_modules/@game-trade/app/public/fonts/gtm/gtm.eot?7195166');
+    src: url('../../../../node_modules/@game-trade/app/public/fonts/gtm/gtm.eot?7195166#iefix') format('embedded-opentype'),
+    url('../../../../node_modules/@game-trade/app/public/fonts/gtm/gtm.woff2?7195166') format('woff2'),
+    url('../../../../node_modules/@game-trade/app/public/fonts/gtm/gtm.woff?7195166') format('woff'),
+    url('../../../../node_modules/@game-trade/app/public/fonts/gtm/gtm.ttf?7195166') format('truetype'),
+    url('../../../../node_modules/@game-trade/app/public/fonts/gtm/gtm.svg?7195166#gtm') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,74 @@
+query GetCatalogGames(
+  $first: Int
+  $offset: Int
+  $name: String
+  $sort: GameCardSort
+  $blockchains: [String]
+  $device: String
+  $friendInGames: Boolean
+  $gameCode: String
+  $gameStatus: String
+  $genreCodes: [String]
+  $prices: [FacetMinMax]
+  $releaseDates: [String]
+  $priceModels: [String]
+  $playAndEarn: [String]
+) {
+  catalogGames(
+    params: {
+      first: $first,
+      offset: $offset,
+      name: $name,
+      sort: $sort,
+      blockchains: $blockchains
+      device: $device,
+      friendInGames: $friendInGames,
+      gameCode: $gameCode,
+      gameStatus: $gameStatus,
+      genreCodes: $genreCodes,
+      prices: $prices,
+      releaseDates: $releaseDates
+      priceModels: $priceModels
+      playAndEarn: $playAndEarn
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        items_on_sale
+        genres {
+          code
+          name
+        }
+        picture_url
+        count_review
+        floor_price
+        name
+        rating
+        blockchainNames
+        contracts {
+          blockchain
+        }
+        release_date
+        media_links {
+          link
+          type
+        }
+      }
+    }
+  }
+}
+
+query GetGameFilters {
+  gameFilters {
+    key
+    title
+    type
+    items {
+      code
+      title
+      checked
+      disable
+    }
+  }
+}

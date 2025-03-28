@@ -1,0 +1,40 @@
+query GetBlockchainsList {
+  networks {
+    code
+    name
+  }
+}
+
+mutation AddContract(
+  $blockchain: String!
+  $contract: String!
+  $is_test: Boolean
+  $source: String!
+) {
+  addContract(
+    params: {
+      blockchain: $blockchain,
+      contract: $contract,
+      is_test: $is_test,
+      source: $source,
+    }
+  ) {
+    code
+    message
+  }
+}
+
+mutation RemoveContract(
+  $contract: String!
+  $blockchain: String!
+) {
+  removeContract(
+    params: {
+      contract: $contract,
+      blockchain: $blockchain
+    }
+  ) {
+    code
+    message
+  }
+}

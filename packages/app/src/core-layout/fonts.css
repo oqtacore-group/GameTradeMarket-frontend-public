@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'ChakraPetch';
+  src:
+    url('~@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Regular.woff2') format('woff2'),
+    url('~@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'ChakraPetch';
+  src:
+    url('~@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Medium.woff2') format('woff2'),
+    url('~@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Medium.woff') format('woff');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'ChakraPetch';
+  src:
+  url('~@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Bold.woff2') format('woff2'),
+  url('~@game-trade/app/public/fonts/Chakra_Petch/ChakraPetch-Bold.woff') format('woff');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'BaiJamjuree';
+  src:
+  url('~@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Regular.woff2') format('woff2'),
+  url('~@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'BaiJamjuree';
+  src:
+    url('~@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Bold.woff2') format('woff2'),
+    url('~@game-trade/app/public/fonts/Bai_Jamjuree/BaiJamjuree-Bold.woff') format('woff');
+  font-weight: 900;
+}

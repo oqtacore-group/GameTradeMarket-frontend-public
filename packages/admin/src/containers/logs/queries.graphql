@@ -1,0 +1,31 @@
+query Logs (
+  $first: Int!
+  $offset: Int!
+) {
+  logs(
+    params: {
+      first: $first,
+      offset: $offset,
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        context
+        createAt
+        duration
+        eventName
+        # response
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
+
+query LogsCount {
+  logsCount {
+    total
+  }
+}

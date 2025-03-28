@@ -1,0 +1,110 @@
+query UserDataGames {
+  me {
+    id
+    games {
+      edges {
+        node {
+          code
+          name
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+      totalCount
+    }
+    searchItems {
+      token_address
+      value
+    }
+#    inventory(
+#      params: {
+#        first: $first
+#        offset: $offset
+#        hasPrice: $hasPrice
+#        name: $name
+#        gameCode: $game_code
+#        userId: $userId
+#        customUrl: $customUrl
+#      }
+#    ) {
+#      totalCount
+#      edges {
+#        node {
+#          id
+#          token_value
+#          contract
+#          picture
+#          price
+#          token_uri
+#          blockchain
+#          trade_contract_gametrade
+#          trade_contract_opensea
+#          name
+#          game_name
+#        }
+#      }
+#    }
+  }
+}
+
+#(
+#  todo pass all these parameters to inventory when they are added to the schema
+#$first: Int
+#$offset: Int
+#$gameCode: String
+#  $facets: [GameCardsFacetsParam]
+#  $sort: GameCardSort
+#  $price: GameCardPriceFilter
+#)
+
+# (params: { first: $first offset: $offset game_code: $gameCode })
+
+query UserData {
+  me {
+    id
+    nick_name
+    custom_url
+    image_url
+    games {
+      edges {
+        node {
+          code
+          name
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+      totalCount
+    }
+#    inventory(
+#      params: {
+#        first: $first,
+#        offset: $offset,
+#        hasPrice: $hasPrice,
+#        gameCode: $game_code
+#      }
+#    ) {
+#      totalCount
+#      edges {
+#        node {
+#          id
+#          token_value
+#          contract
+#          picture
+#          price
+#          token_uri
+#          blockchain
+#          trade_contract_gametrade
+#          trade_contract_opensea
+#          name
+#          approved
+#          likes_count
+#          is_my_like
+#          # usd_price todo does not come from the backend, it is needed for the display in the card
+#        }
+#      }
+#    }
+  }
+}

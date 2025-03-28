@@ -1,0 +1,15 @@
+query StatisticsAdmin {
+  statisticsAdmin {
+    table {
+      value
+      allTime
+      for24hours
+      for30days
+      onlyFirstTime24hours
+    }
+    blockchainsChart {
+      blockchain
+      count
+    }
+  }
+}

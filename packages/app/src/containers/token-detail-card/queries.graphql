@@ -1,0 +1,226 @@
+query GetDetailGameTokenCard(
+  $blockchain: String
+  $contract: String
+  $tokenValue: String
+  $gameCode: String
+  $id: String
+  # $userId: ID
+) {
+  gameTokenCard(
+    params: {
+      blockchain: $blockchain
+      contract: $contract,
+      tokenValue: $tokenValue,
+      id: $id,
+      gameCode: $gameCode,
+      # user_id: $userId,
+    }
+  ) {
+    id
+    contract
+    owner
+    trade_contract_gametrade
+    trade_contract_opensea
+    imxOrderId
+    token_value
+    name
+    price
+    picture
+    blockchain
+    token_uri
+    coin_info {
+      blockchain
+      coin_address
+      decimals
+      logo
+      price
+      symbol
+      usd_price
+      usd_price_per_coin
+    }
+    item_data {
+      item_id
+    }
+    approved
+    platform
+    description
+    game_name
+    game_code
+    external_url
+    is_external_item
+    token_url
+    props {
+      trait_type
+      display_type
+      max_value
+      max_count
+      value
+    }
+    levels {
+      trait_type
+      display_type
+      max_value
+      max_count
+      value
+    }
+    currencies {
+      blockchain_code
+      coin_name
+      contract_address
+      decimals
+      id
+      logo
+      price
+      crypto_price
+    }
+    likes_count
+    is_my_like
+    comments(params: {
+      offset: 0,
+      first: 20
+    }) {
+      edges {
+        node {
+          create_time
+          id
+          item_id
+          message
+          owner {
+            image_url
+            nick_name
+            custom_url
+          }
+          user_id
+          # item
+          # likes
+          # is_my_like
+        }
+      }
+    }
+  }
+}
+
+#
+# Refresh inventory item
+#
+
+mutation RefreshInventoryItem(
+  $contract: String!
+  $token_value: String!
+  $blockchain: String!
+) {
+  refreshInventoryItem(params: { contract: $contract token_value: $token_value blockchain: $blockchain }) {
+    price
+    fee
+    approved
+    wallet
+    platform
+  }
+}
+
+
+#
+# Like
+#
+
+mutation MakeLike(
+  $item_id: Int!
+) {
+  itemLike(item_id: $item_id)
+}
+
+
+#
+# Comments
+#
+
+mutation AddComment(
+  $item_id: ID!
+  $message: String!
+) {
+  addItemComment(
+    params: {
+      item_id: $item_id,
+      message: $message,
+    }
+  ) {
+    create_time
+    id
+    # is_my_like
+    item_id
+    message
+    user_id
+    # item
+    # likes
+    # user
+  }
+}
+
+mutation RemoveComment(
+  $comment_id: ID!
+) {
+  removeItemComment(
+    params: {
+      comment_id: $comment_id,
+    }
+  )
+}
+
+query GetGameSimilarTokenCards(
+  $first: Int
+  $id: String!
+  $offset: Int
+) {
+  gameSimilarTokenCards(
+    params: {
+      first: $first,
+      id: $id,
+      offset: $offset,
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        picture
+        price
+        name
+        id
+        coin_info {
+          blockchain
+          coin_address
+          decimals
+          logo
+          price
+          symbol
+          usd_price
+          usd_price_per_coin
+        }
+        token_value
+        blockchain
+        likes_count
+        is_my_like
+        contract
+      }
+    }
+  }
+}
+
+
+mutation SetCoinInfo(
+  $coin_address: String
+  $coin_price: Float
+  $contract: String!
+  $tokenValue: String!
+) {
+  setCoinInfo(
+    params: {
+      coin_address: $coin_address,
+      coin_price: $coin_price,
+      contract: $contract,
+      tokenValue: $tokenValue,
+    }
+  ) {
+    coin_address
+    coin_price
+  }
+}

@@ -1,0 +1,114 @@
+query UserDataInfo(
+  $id: ID!
+  $userId: String!
+  $customUrl: String!
+  $first: Int
+  $offset: Int
+  $hasPrice: Boolean
+  $name: String
+  $game_code: String
+) {
+  user(
+    id: $id,
+    custom_url: $customUrl
+  ) {
+    id
+    nick_name
+    image_url
+    promoCode
+    games {
+      edges {
+        node {
+          code
+          name
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+      totalCount
+    }
+    friends(
+      params: {
+        first: 9
+      }
+    ) {
+      edges {
+        node {
+          id
+          image_url
+          nick_name
+          email
+          version
+          unreadCount
+          last_message
+          custom_url
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+      totalCount
+    }
+    inventory(
+      params: {
+        first: $first
+        offset: $offset
+        hasPrice: $hasPrice
+        name: $name
+        gameCode: $game_code
+        userId: $userId
+        customUrl: $customUrl
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          token_value
+          contract
+          picture
+          price
+          token_uri
+          blockchain
+          trade_contract_gametrade
+          trade_contract_opensea
+          name
+          game_name
+        }
+      }
+    }
+  }
+}
+
+query IsFriendRequestSent(
+  $friend: ID!
+) {
+  isFriendRequestSent(
+    friend: $friend,
+  ) {
+    isFriendRequestSent
+  }
+}
+
+query IsMyFriend(
+  $friend: ID!
+) {
+  isMyFriend(
+    friend: $friend,
+  ) {
+    isMyFriend
+  }
+}
+
+query UserAccountPromoCode {
+    me {
+        promoCode
+    }
+}
+
+query UserAccountOverlay {
+    me {
+        player_token
+    }
+}

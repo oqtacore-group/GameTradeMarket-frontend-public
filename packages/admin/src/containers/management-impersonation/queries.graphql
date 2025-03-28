@@ -1,0 +1,15 @@
+mutation GetTokenToImpersonate(
+  $email: String
+  $id: String
+) {
+  access(
+    params: {
+      email: $email,
+      id: $id
+    }
+  ) {
+    expires
+    token
+    token_type
+  }
+}

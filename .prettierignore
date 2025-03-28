@@ -1,0 +1,15 @@
+**/node_modules/*
+**/public
+**/build
+**/dist
+
+**/*.js
+packages/app/.next/
+packages/app/public
+packages/app/build
+packages/admin/.next/
+packages/admin/public
+packages/admin/build
+packages/icons/src/build
+packages/icons/src/index.ts
+packages/lib/src/codegen-types.tsx

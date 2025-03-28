@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/": ["src"],
+      "@/*": ["src/*"],
+      "@game-trade/lib/*": ["../lib/src/*"],
+      "@game-trade/lib": ["../lib/src/index"],
+      "@game-trade/ui/*": ["../ui/src/*"],
+      "@game-trade/ui": ["../ui/src/index"],
+      "@game-trade/icons/*": ["../icons/src/*"],
+      "@game-trade/icons": ["../icons/src/index"]
+    }
+  },
+  "include": [
+    "src",
+    "../../types",
+  ]
+}

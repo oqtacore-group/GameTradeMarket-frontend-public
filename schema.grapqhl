@@ -1,0 +1,1106 @@
+type AccessResource {
+  path: String!
+}
+
+"""Adding contract"""
+input AddContractInput {
+  """Blockchain"""
+  blockchain: String!
+
+  """Contract identifier"""
+  contract: String!
+
+  """Test contract"""
+  is_test: Boolean = false
+
+  """Contract name"""
+  name: String!
+
+  """Game code"""
+  source: String!
+}
+
+input AddInventoryParams {
+  contract: String!
+  token_value: String!
+}
+
+input AddItemCommentParams {
+  item_id: ID!
+  message: String!
+}
+
+"""Adding publisher to game"""
+input AddPublisherOfSourceInput {
+  """Game"""
+  code: String!
+
+  """User email"""
+  user_email: String!
+}
+
+"""Adding game"""
+input AddSourceInput {
+  """Game identifier"""
+  code: String!
+
+  """Developer"""
+  developer: String!
+
+  """Media links"""
+  media_urls: [String!]!
+
+  """Game main responsible person"""
+  owner: String!
+
+  """Game release date"""
+  release_date: DateTime!
+
+  """Publisher name"""
+  publisher: String!
+
+  """Social media links"""
+  social_links: [String!]!
+}
+
+type BlockchainChartResponse {
+  """Blockchain name"""
+  blockchain: String!
+
+  """Count of contracts in selected blockchain"""
+  count: String!
+}
+
+input BuyInput {
+  contract: String!
+  owner: String!
+  token_value: String!
+}
+
+type Card {
+  approved: Boolean
+  blockchain: String!
+  coin_info: CoinInfoDto 
+  comments(params: PaginationParams!): CommentsDto!
+  contract: String!
+  description: String
+  game_name: String!
+  id: ID!
+  is_my_like: Boolean!
+  levels: [CardLevel!]
+  likes_count: Int!
+  name: String
+  owner: String!
+  picture: String
+  platform: String!
+  price: Float
+  props: [CardPropDto!]
+  token_uri: String
+  token_value: String!
+  trade_contract: String
+  usd_price: Float!
+}
+
+type CoinInfoDto {
+  blockchain: String!
+  coin_address: String!
+  decimals: Int!
+  logo: String!
+  price: Float!
+  symbol: String!
+  usd_price: Float
+}
+
+type CardConnection {
+  edges: CardEdges!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CardEdges {
+  node: [Card!]
+}
+
+type CardLevel {
+  display_type: DisplayType
+  max_count: Int!
+  max_value: Float
+  order: String
+  trait_count: Int
+  trait_type: String
+  value: Float
+}
+
+type CardPropDto {
+  display_type: DisplayType
+  max_count: Int!
+  max_value: String
+  order: String
+  trait_count: Int
+  trait_type: String
+  value: String
+}
+
+input CardPropInput {
+  display_type: DisplayType = string
+  max_count: Int = 0
+  max_value: String
+  order: String
+  trait_count: Int
+  trait_type: String
+  value: String
+}
+
+type CommentEdges {
+  node: [InventoryComment!]
+}
+
+type CommentOwnerDto {
+  custom_url: String
+  image_url: String
+  nick_name: String!
+}
+
+type CommentsDto {
+  edges: CommentEdges!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type Contract {
+  blockchain: String!
+  contract: ID!
+  game_code: String!
+  is_test: Boolean!
+  mapping: String!
+  name: String!
+}
+
+"""List of smart contracts for game"""
+input ContractsListParams {
+  """Game identifier"""
+  code: String!
+}
+
+type CountGames {
+  total: Int!
+}
+
+type CountItems {
+  total: Int!
+}
+
+type CountLogs {
+  total: Int!
+}
+
+type CountUsers {
+  total: Int!
+}
+
+type CountWallets {
+  total: Int!
+}
+
+type Currency {
+  blockchain: String!
+  contract: String!
+  currency: String!
+  name: String!
+  value: String!
+}
+
+enum CurrencyValues {
+  ETH
+  MATIC
+  USD
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum DisplayType {
+  boost_number
+  boost_percentage
+  date
+  number
+  string
+}
+
+input FriendParams {
+  """Records limit"""
+  first: Int = 20
+
+  """Page number"""
+  offset: Int = 0
+}
+
+type Game {
+  code: String!
+  contracts: [Contract!]
+  currency: String!
+  genre: Genre!
+  itemCount: Int
+  itemOnSaleCount: Int
+  name: String!
+  owner: String!
+}
+
+type GameCard {
+  admitted_to_trading: Boolean!
+  blockchain: String!
+  contracts: [GameCardContract!]!
+  description: String!
+  developer: String!
+  floor_price: Float!
+  genre: Genre!
+  items_on_sale: Int!
+  logo: String!
+  media_links: [String]!
+  owners: Int!
+  publisher: String!
+  release_date: String
+  social_links: [SocialLink]!
+  trading_volume_7d: Float!
+  trading_volume_30d: Float!
+}
+
+type GameCardMint {
+  amount_items: Float!
+  description: String!
+  game_code: String!
+  media: [SocialLink!]!
+  start_mint: DateTime
+  start_price: Float!
+  title: String!
+  utility: String
+}
+
+type GameCardContract {
+  contract_address: String!
+  link: String!
+  title: String!
+  verify: Boolean!
+}
+
+input GameCardParams {
+  code: String
+}
+
+input GameCardPriceFilter {
+  currency: String!
+  max: Float
+  min: Float
+}
+
+input GameCardSort {
+  price: SortValues!
+}
+
+input GameCardsFacetsParam {
+  key: String!
+  max: Int
+  min: Int
+  type: GameTokenFacetTypeEnum!
+  values: [GameCardsFacetsParamValue]
+}
+
+input GameCardsFacetsParamValue {
+  count: Int
+  key: String
+}
+
+input GameCardsParams {
+  facets: [GameCardsFacetsParam]
+
+  """Records limit"""
+  first: Int = 20
+  gameCode: String
+  id: String
+  name: String
+
+  """Page number"""
+  offset: Int = 0
+  price: GameCardPriceFilter
+  sort: GameCardSort
+}
+
+type GameConnection {
+  edges: GameEdges!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type GameEdges {
+  node: [Game!]
+}
+
+input GameItemsParams {
+  """Records limit"""
+  first: Int = 20
+  gameCode: String
+
+  """Page number"""
+  offset: Int = 0
+}
+
+type GameItemsResponse {
+  """Game item contract"""
+  contract: String
+
+  """Game item description"""
+  description: String
+
+  """ID"""
+  id: Float
+}
+
+type GameTokenFacet {
+  key: String
+  max: Int
+  min: Int
+  type: GameTokenFacetTypeEnum
+  values: [GameTokenFacetValue!]
+}
+
+enum GameTokenFacetTypeEnum {
+  LEVEL
+  PROP
+}
+
+type GameTokenFacetValue {
+  count: Int!
+  key: String!
+}
+
+input GameTokenFacetsParams {
+  gameCode: String!
+}
+
+type GameTokenFilter {
+  items: [GameTokenFilterValue!]
+  key: String!
+  title: String!
+  type: GameTokenFilterType
+}
+
+input GameTokenFilterParams {
+  gameCode?: String
+}
+
+enum GameTokenFilterType {
+  CHECKBOX
+  COINCHECKBOX
+  RADIO_MIN_MAX
+}
+
+type GameTokenFilterValue {
+  checked: Boolean!
+  code: String!
+  disable: Boolean!
+  title: String!
+  coins?: [String]!
+}
+
+input GamesParams {
+  """Records limit"""
+  first: Int = 20
+  name: String
+
+  """Page number"""
+  offset: Int = 0
+}
+
+type Genre {
+  code: String!
+  name: String!
+}
+
+input GetInventoryParams {
+  customUrl: String
+
+  """Records limit"""
+  first: Int = 20
+  gameCode: String
+  hasPrice: Boolean
+  name: String
+
+  """Page number"""
+  offset: Int = 0
+  price: GameCardPriceFilter
+  sort: GameCardPriceFilter
+  userId: String
+}
+
+input GetGameCardMint {
+  code: String!
+}
+
+input ImportTokenInput {
+  approved: Boolean = false
+  contract: String!
+  fee: Float = 0
+  owner: String
+  price: Float = 0
+  token_uri: String
+  token_value: String!
+}
+
+type InventoryComment {
+  create_time: DateTime!
+  id: ID!
+  is_my_like: Boolean!
+  item_id: Int!
+  message: String!
+  owner: CommentOwnerDto!
+  user_id: String!
+}
+
+type InventoryLike {
+  id: ID!
+  item: Item!
+  item_id: Int!
+  user: User!
+  user_id: String!
+}
+
+type IsFriendRequestSent {
+  isFriendRequestSent: Boolean!
+}
+
+type IsFriendRequestSentToMe {
+  friend: String!
+  isFriendRequestSentToMe: Boolean!
+}
+
+type IsMyFriend {
+  isMyFriend: Boolean!
+}
+
+type Item {
+  approved: Boolean
+  attributes: TokenDataAttrsDto!
+  blockchain: String
+  comments: [InventoryComment!]!
+  contract: String
+  currency: String
+  fee: Float!
+  game_code: String
+  game_name: String
+  itemIds: [Listing!]!
+  likes: [InventoryLike!]!
+  likes_count: Int!
+  name: String
+  need_update: Boolean
+  picture: String
+  price: Float!
+  sale_type: SaleType!
+  token_uri: String
+  token_value: String
+  trade_contract: String
+  user: User
+  wallet: String
+}
+
+type Listing {
+  create_time: DateTime
+  id: Float!
+  is_listing: Boolean!
+  item_id: Int!
+  price_current: Float!
+  price_prev: Float!
+  user_id: String!
+  wallet: String!
+}
+
+type Log {
+  context: String!
+  createAt: String!
+  duration: Int!
+  eventName: String!
+  response: String
+}
+
+type LogEdges {
+  node: [Log!]
+}
+
+input LogParams {
+  first: Int!
+  offset: Int!
+}
+
+input LoginByUserParams {
+  email: String
+  id: String
+}
+
+input LoginParams {
+  email: String!
+  locale: String = "en"
+  password: String!
+}
+
+type Logs {
+  edges: LogEdges!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type LoopbackResult {
+  event: String!
+}
+
+type Mutation {
+  access(params: LoginByUserParams!): Token!
+
+  """Adding contract for game"""
+  addContract(params: AddContractInput!): Success!
+  addInventoryItem(params: AddInventoryParams): Item!
+
+  """Adding comment to token"""
+  addItemComment(params: AddItemCommentParams!): InventoryComment!
+
+  """Adding game publisher"""
+  addPublisherSource(params: AddPublisherOfSourceInput!): Success!
+
+  """Adding game"""
+  addSource(params: AddSourceInput!): Success!
+  approveFriendRequest(friend: ID!): Success!
+  buy(params: BuyInput!): Boolean!
+  cancelOutgoingFriendRequest(sender: ID!): Success!
+
+  """Like/unlike comment"""
+  commentLike(comment_id: Int!): Boolean!
+  connectWallet(params: WalletParams!): Success!
+  deleteUser(id: String!): Success!
+  disconnectWallet(address: String!): Success!
+  importItem(params: ImportTokenInput!): Boolean!
+  itemLike(item_id: Int!): Boolean!
+  logout: Success!
+  refreshInventoryItem(params: NotifyInventoryParams): Item
+  rejectFriendRequest(sender: ID!): Success!
+
+  """Removing contract from game"""
+  removeContract(params: RemoveContractInput!): Success!
+  removeFromFriends(friend: ID!): Success!
+
+  """Adding comment to token"""
+  removeItemComment(params: RemoveItemCommentParams!): Boolean!
+  removeItemFromInventory(params: RemoveInventoryParams): Success!
+
+  """Removing game publisher"""
+  removePublisherSource(params: RemovePublisherOfSourceInput!): Success!
+
+  """Removing game"""
+  removeSource(params: RemoveSourceInput!): Success!
+  reset(params: ResetParams!): Success!
+  resourceCreate(params: ResourceCreateParams!): Success!
+  resourceDelete(path: String!): Success!
+  restore(params: RestoreParams!): Success!
+  revoke(user_id: ID!): Success!
+
+  """Update role"""
+  role(params: RoleUpdateParams!): Success!
+  roleAddResources(params: RoleResourcesParams): Success!
+
+  """Adding role"""
+  roleCreate(params: RoleCreateParams!): Success!
+
+  """Delete role"""
+  roleDelete(code: String!): Success!
+  roleRemoveResources(params: RoleResourcesParams): Success!
+  sendFriendRequest(recipient: ID!): Success!
+  signup(params: LoginParams!): Success!
+  subscribe(params: SubscribeParams!): Success!
+  token(locale: String = "en", token: String!): Token!
+
+  """Updating contract for game"""
+  updateContract(params: UpdateContractInput!): Success!
+  updateElastic(id: Int): Boolean!
+  updatePrice(params: UpdatePriceInput!): Boolean!
+
+  """Updating game"""
+  updateSource(params: UpdateSourceInput!): Success!
+  user(params: UserParams): User!
+
+  """Setting user roles"""
+  userAddRole(params: UserRoleParams!): Success!
+
+  """Removing user roles"""
+  userRemoveRole(params: UserRoleParams!): Success!
+
+  """Removing all user roles and setting new ones"""
+  userSetRole(params: UserRoleParams!): Success!
+
+  """Email verification"""
+  verify(params: VerifyParams!): Success!
+  wallet(params: WalletUpdateParams): Wallet!
+  writeToUs(params: WriteToUsParams!): Success!
+}
+
+type NetworkEntity {
+  code: String!
+  currency: CurrencyValues!
+  is_enabled: Boolean!
+  name: String!
+  rpc_url: String!
+  trade_contract: String!
+}
+
+input NotifyInventoryParams {
+  blockchain: String!
+  contract: String!
+  token_value: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+}
+
+"""Input parameters for pagination"""
+input PaginationParams {
+  """Records limit"""
+  first: Int = 20
+
+  """Page number"""
+  offset: Int = 0
+}
+
+type PublisherUsers {
+  email: String
+  user_id: ID!
+}
+
+"""List of game publishers"""
+input PublisherUsersParams {
+  """Game identifier"""
+  code: String!
+}
+
+type Query {
+  gameCard(params: GameCardParams!): GameCard
+  gameCardMint(params: GetGameCardMint!): GameCardMint
+  gameCardsMint: [GameCardMint!]!
+  gameItemsAdmin(params: GameItemsParams!): [GameItemsResponse!]!
+  gameItemsCount(params: GameItemsParams!): CountItems!
+  gameTokenCards(params: GameCardsParams): CardConnection!
+  gameTokenFacets(params: GameTokenFacetsParams): [GameTokenFacet!]
+  gameTokenFilters(params: GameTokenFilterParams): [GameTokenFilter!]
+  games(params: GamesParams): GameConnection
+  gamesCount: CountGames!
+  getBalances(address: String!): [Currency!]
+
+  """"""
+  getContracts(params: ContractsListParams): [Contract!]
+  getTokens(address: String!): [TokenTransfer!]
+  incomingRequests: UserConnection!
+  isFriendRequestSent(friend: ID!): IsFriendRequestSent!
+  isFriendRequestSentToMe(friend: ID!): IsFriendRequestSentToMe!
+  isMyFriend(friend: ID!): IsMyFriend!
+  login(params: LoginParams!): Token!
+  logs(params: LogParams!): Logs!
+  logsCount: CountLogs!
+  loopback: LoopbackResult
+  me: User!
+  myAccessProfiles: UserRole!
+  myWallets: [Wallet!]
+  networks: [NetworkEntity!]!
+  outgoingRequests: UserConnection!
+  ping: User!
+
+  """"""
+  publisherUsers(params: PublisherUsersParams): [PublisherUsers!]
+  refresh: Token!
+  resources(params: ResourceParams): [Resource!]
+
+  """List of available roles"""
+  roles(params: RoleParams): [Role!]
+  statisticsAdmin: StatisticsResponse!
+  tokenInfo(params: TokenInfoParams!): TokenInfo
+  user(custom_url: String!, id: ID!): User
+  users(params: UserFilters): UserConnection
+  usersCount: CountUsers!
+  wallets(params: WalletFilters): [Wallet!]
+  walletsCount: CountWallets!
+}
+
+"""Removing contract"""
+input RemoveContractInput {
+  """Contract identifier"""
+  contract: String!
+}
+
+input RemoveInventoryParams {
+  contract: String!
+  token_value: String!
+}
+
+input RemoveItemCommentParams {
+  comment_id: ID!
+}
+
+"""Removing publisher from game"""
+input RemovePublisherOfSourceInput {
+  """Game"""
+  code: String!
+
+  """User identifier"""
+  user_id: ID!
+}
+
+"""Removing game"""
+input RemoveSourceInput {
+  """Game identifier"""
+  code: String!
+}
+
+input ResetParams {
+  code: Int!
+  email: String!
+  password: String!
+}
+
+type Resource {
+  name: String!
+  path: String!
+}
+
+input ResourceCreateParams {
+  name: String!
+  path: String!
+}
+
+input ResourceParams {
+  name: String!
+  path: String!
+}
+
+input RestoreParams {
+  email: String!
+}
+
+type Role {
+  code: String!
+  name: String!
+}
+
+input RoleCreateParams {
+  """Unique identifier"""
+  code: ID
+
+  """Role name"""
+  name: String
+}
+
+input RoleParams {
+  """Unique identifier"""
+  code: ID
+
+  """Role name"""
+  name: String
+}
+
+input RoleResourcesParams {
+  resources: [String!]
+  roleCode: ID!
+}
+
+input RoleUpdateParams {
+  """Unique identifier"""
+  code: ID
+
+  """Role name"""
+  name: String
+  newCode: String!
+}
+
+enum SaleType {
+  FIXED_PRICE
+}
+
+enum SocialKind {
+  DISCORD
+  TWITTER
+  WEB
+}
+
+type SocialLink {
+  link: String!
+  type: SocialKind!
+}
+
+input SocialParams {
+  kind: SocialKind
+  value: String!
+}
+
+enum SortValues {
+  ASC
+  DESC
+}
+
+type StatisticsResponse {
+  """Data for blockchain chart"""
+  blockchainsChart: [BlockchainChartResponse!]!
+
+  """Data for statistics table on Dashboard Page"""
+  table: [TableResponse!]!
+}
+
+input SubscribeParams {
+  email: String!
+  k8bd2: String!
+}
+
+type Success {
+  code: String!
+  message: String!
+}
+
+"""Statistics"""
+type TableResponse {
+  """Count for all time"""
+  allTime: Float!
+
+  """Count for 24 hours"""
+  for24hours: Float!
+
+  """Count for 30 days"""
+  for30days: Float!
+
+  """First-time actions (if available)"""
+  onlyFirstTime24hours: String
+
+  """Name of entity"""
+  value: String!
+}
+
+type Token {
+  """Token expiration date"""
+  expires: DateTime!
+
+  """Authorization token"""
+  token: String!
+
+  """Token type"""
+  token_type: String!
+}
+
+type TokenDataAttrsDto {
+  attributes: [CardPropDto!]!
+  description: String
+  external_url: String
+  name: String!
+  picture: String!
+}
+
+input TokenDataAttrsInput {
+  attributes: [CardPropInput!]!
+  description: String
+  external_url: String
+  name: String!
+  picture: String!
+}
+
+type TokenInfo {
+  approved: Boolean!
+  attributes: TokenDataAttrsDto
+  blockchain: String!
+  contract: String!
+  fee: Float!
+  game_code: String
+  name: String!
+  owner: String
+  picture: String
+  price: Float!
+  token_uri: String
+  token_value: String!
+  trade_contract: String!
+}
+
+input TokenInfoParams {
+  contract: String!
+  token_value: String!
+}
+
+type TokenTransfer {
+  block_number: Int!
+  block_timestamp: String!
+  blockchain: String!
+  from_address: String!
+  token_address: String!
+  token_uri: String
+  value: String!
+}
+
+"""Updating contract"""
+input UpdateContractInput {
+  """Contract identifier"""
+  contract: String!
+
+  """Test contract"""
+  is_test: Boolean = false
+
+  """Contract name"""
+  name: String!
+}
+
+input UpdatePriceInput {
+  contract: String!
+  currency: CurrencyValues!
+  fee: Float = 0
+  price: Float = 0
+  token_value: String!
+}
+
+"""Updating game"""
+input UpdateSourceInput {
+  """Game identifier"""
+  code: String!
+
+  """"""
+  developer: String
+
+  """"""
+  owner: String
+
+  """"""
+  release_date: String
+
+  """"""
+  publisher: String
+
+  """"""
+  social_links: [String!]
+}
+
+type User {
+  accessProfiles: [AccessResource!]
+  bio: String
+  custom_url: String
+  email: String!
+  friendRequests: UserConnection
+  friends(params: FriendParams): UserConnection
+  games(params: GamesParams): GameConnection
+  id: ID!
+  image_url: String
+  inventory(params: GetInventoryParams): CardConnection
+  is_friend: Boolean
+  is_friendship_requested: Boolean
+  items_count: Int
+  last_message: String
+  last_visited: DateTime
+  locale: String
+  message_create_time: DateTime
+  nick_name: String!
+  roles: [UserRole!]
+  searchItems: [TokenTransfer!]
+  social: [UserSocial!]
+  unreadCount: Float!
+  version: String!
+  wallets: [Wallet!]
+}
+
+type UserConnection {
+  edges: UserEdges!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserEdges {
+  node: [User!]
+}
+
+input UserFilters {
+  create_date_from: String
+  custom_url: String
+  email: String
+
+  """Records limit"""
+  first: Int = 20
+  hide_me: Boolean
+  id: ID
+  nick_name: String
+
+  """Page number"""
+  offset: Int = 0
+}
+
+input UserParams {
+  bio: String
+  custom_url: String
+  email: String
+  image_url: String
+  locale: String
+  nick_name: String
+  password: String
+  social: [SocialParams]
+}
+
+type UserRole {
+  code: String!
+}
+
+input UserRoleParams {
+  """User email"""
+  email: String
+
+  """List of roles"""
+  roles: [String!]!
+
+  """User identifier"""
+  user_id: ID
+}
+
+type UserSocial {
+  kind: SocialKind!
+  value: String!
+}
+
+input VerifyParams {
+  code: Int!
+  email: String!
+}
+
+type Wallet {
+  address: String!
+  balances: [Currency!]!
+  create_time: String!
+  name: String!
+  user: User!
+  user_id: String!
+}
+
+input WalletFilters {
+  """Records limit"""
+  first: Int = 20
+
+  """Page number"""
+  offset: Int = 0
+}
+
+input WalletParams {
+  address: String!
+  name: String!
+  provider: WalletProvider!
+}
+
+enum WalletProvider {
+  METAMASK
+  WALLET_CONNECT
+}
+
+input WalletUpdateParams {
+  address: String!
+  name: String!
+}
+
+input WriteToUsParams {
+  email: String!
+  k8bd2: String!
+  name: String!
+  text: String!
+}

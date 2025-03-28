@@ -1,0 +1,205 @@
+query GetHomeSlides {
+  homeSlides {
+    image_url
+    meta {
+      buttons {
+        link
+        text
+      }
+    }
+    subtitle
+    title
+  }
+}
+
+query GetTrendingGames(
+  $isTrending: Boolean
+  $first: Int
+  $offset: Int
+) {
+  catalogLandingGames(
+    params: {
+      isTrending: $isTrending,
+      first: $first,
+      offset: $offset
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        items_on_sale
+        genres {
+          code
+          name
+        }
+        first_contract {
+          blockchain
+          __typename
+        }
+        name
+        release_date
+        first_media_link {
+          link
+          type
+        }
+      }
+    }
+  }
+}
+
+query GetHighestRanked(
+  $topRank: Boolean
+  $first: Int
+  $offset: Int
+) {
+  catalogLandingGames(
+    params: {
+      topRank: $topRank,
+      first: $first,
+      offset: $offset
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        items_on_sale
+        genres {
+          code
+          name
+        }
+        first_contract {
+          blockchain
+          __typename
+        }
+        name
+        release_date
+        first_media_link {
+          link
+          type
+        }
+      }
+    }
+  }
+}
+
+query GetTopFreeGames(
+  $topFree: Boolean
+  $first: Int
+  $offset: Int
+) {
+  catalogLandingGames(
+    params: {
+      topFree: $topFree,
+      first: $first,
+      offset: $offset
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        items_on_sale
+        genres {
+          code
+          name
+        }
+        first_contract {
+          blockchain
+          __typename
+        }
+        name
+        release_date
+        first_media_link {
+          link
+          type
+        }
+      }
+    }
+  }
+}
+
+query GetMarketBlogs {
+  getMarketBlogs {
+    create_time
+    description
+    external_url
+    id
+    img_url
+    is_published
+    title
+  }
+}
+
+query GetSearchGames(
+  $first: Int
+  $offset: Int
+  $name: String
+) {
+  catalogGames(
+    params: {
+      first: $first,
+      offset: $offset,
+      name: $name,
+    }
+  ) {
+    totalCount
+    edges {
+      node {
+        media_links {
+          link
+          type
+        }
+        name
+      }
+    }
+  }
+}
+
+#query GetHomePage(
+#  $topReview: Boolean
+#  $first: Int
+#  $offset: Int
+#) {
+#  GetHomeSlides: homeSlides {
+#    image_url
+#    meta {
+#      buttons {
+#        link
+#        text
+#      }
+#    }
+#    subtitle
+#    title
+#  }
+#
+#  GetTrendingGames: catalogGames(
+#    params: {
+#      topReview: $topReview,
+#      first: $first,
+#      offset: $offset
+#    }
+#  ) {
+#    totalCount
+#    edges {
+#      node {
+#        genres {
+#          code
+#          name
+#        }
+#        picture_url
+#        count_review
+#        floor_price
+#        name
+#        rating
+#        blockchainNames
+#        contracts {
+#          blockchain
+#        }
+#        release_date
+#        media_links {
+#          link
+#          type
+#        }
+#      }
+#    }
+#  }
+#}

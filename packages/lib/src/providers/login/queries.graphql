@@ -1,0 +1,21 @@
+mutation SignUp($email: String!, $password: String!, $invitedBy: String, $referrerLink: String) {
+    signup(params: { email: $email, password: $password, invitedBy: $invitedBy, referrerLink: $referrerLink }) {
+        code
+        message
+    }
+}
+
+
+mutation Verify($email: String!, $code: Int!) {
+    verify(params: { email: $email, code: $code }) {
+        code
+        message
+    }
+}
+
+mutation Restore($email: String!) {
+    restore(params: { email: $email }) {
+        code
+        message
+    }
+}

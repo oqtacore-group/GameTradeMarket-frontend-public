@@ -1,0 +1,21 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+src/index.ts
+src/build
+
+# misc
+.DS_Store
+
+#enviroments
+.env.local
+.env.prod
+.env.dev
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea
+.vscode

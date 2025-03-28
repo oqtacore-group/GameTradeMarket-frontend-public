@@ -1,0 +1,21 @@
+query GetRolesList {
+  roles {
+    code
+    name
+  }
+}
+
+mutation SetRole(
+  $roles: [String!]!
+  $email: String!
+) {
+  userSetRole(
+    params: {
+      email: $email
+      roles: $roles
+    }
+  ) {
+    code
+    message
+  }
+}

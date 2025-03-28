@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "remote": {
+      "name": "Remote Schema",
+      "schemaPath": "./remote-schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "Remote SWAPI GraphQL Endpoint": {
+            "url": "https://api.gametrade.market/api/schema.graphql",
+            "introspect": true
+          }
+        }
+      }
+    }
+  }
+}

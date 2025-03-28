@@ -1,0 +1,13 @@
+mutation WriteToUs(
+    $email: String!
+    $k8bd2: String!
+    $name: String!
+    $text: String!
+) {
+    writeToUs(
+        params: { email: $email, k8bd2: $k8bd2, name: $name, text: $text }
+    ) {
+        message
+        code
+    }
+}

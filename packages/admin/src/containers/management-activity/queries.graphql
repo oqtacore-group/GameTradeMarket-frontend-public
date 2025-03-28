@@ -1,0 +1,37 @@
+query getActivity(
+  $first: Int
+  $offset: Int
+) {
+    activity(
+      params: {
+        first: $first,
+        offset: $offset,
+      }
+    ) {
+      totalCount
+      edges {
+          node {
+              id
+              price
+              currency
+              blockchain
+              created_at
+              token_id
+              type_event
+              token_name
+              game_name
+              seller {
+                  nick_name
+                  image_url
+              }
+              buyer {
+                  nick_name
+                  image_url
+              }
+          }
+      }
+      pageInfo {
+          hasNextPage
+      }
+    }
+}

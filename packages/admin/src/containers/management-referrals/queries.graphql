@@ -1,0 +1,31 @@
+query Referrals(
+  $offset: Int
+  $first: Int
+) {
+  users(
+    params: {
+      offset: $offset,
+      first: $first,
+    }
+  ) {
+    edges {
+      node {
+        id
+        nick_name
+        email
+        wallets {
+          address
+        }
+        promoCode
+        referrerLink
+        invitedBy
+      }
+    }
+  }
+}
+
+query UsersCount {
+  usersCount {
+    total
+  }
+}

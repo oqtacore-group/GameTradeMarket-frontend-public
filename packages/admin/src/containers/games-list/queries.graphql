@@ -1,0 +1,30 @@
+query Games(
+  $offset: Int
+  $first: Int
+) {
+  games(
+    params: {
+      offset: $offset,
+      first: $first,
+    }
+  ) {
+    edges {
+      node {
+        code
+        contracts {
+          contract
+          blockchain
+        }
+        itemCount
+        itemOnSaleCount
+        name
+      }
+    }
+  }
+}
+
+query GamesCount {
+  gamesCount {
+    total
+  }
+}
